@@ -10,7 +10,9 @@ $ npm install mkstack -g
 
 ## Usage
 
-### Create a stack
+#### Create a stack
+
+`$ mkstack -c|--create :id`
 
 Lets setup a web stack. We need `browserify` and some other stuff.
 
@@ -32,9 +34,14 @@ $ mkstack -c web
 created web
 ```
 
-### Apply stack(s)
+#### Apply stack(s)
 
-Time for a new web project. Create a new folder and apply the previously saved stack. This will do `npm i :project --save` for all `dependencies` and `npm i :project --save-dev` for all `devDependencies`.
+`$ mkstack -a|--apply :ids`
+
+Time for a new web project. Create a new folder and apply the previously saved stack. This will do:
+
+* `npm i :project --save` for all `dependencies`
+* `npm i :project --save-dev` for all `devDependencies`.
 
 ```
 $ mkdir ~/src/next-project && cd ~/src/next-project
@@ -63,9 +70,9 @@ applying web,sockets,tcp-server,irc2,console
 ..
 ```
 
-This last
+#### List stacks
 
-### List stacks
+`$ mkstack -l|--list`
 
 List your saved stacks with the `-l` flag. Note that `mkstack` does not have any opinions on version numbers. It just saves them as you specified them the first time.
 
@@ -87,9 +94,9 @@ $ mkstack -l
 }
 ```
 
-### Remove stacks
+#### Remove stack
 
-Remove stacks by using `--rm`.
+`$ mkstack --rm :id`
 
 ```
 $ mkstack --rm web
