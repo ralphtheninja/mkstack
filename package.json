@@ -1,0 +1,39 @@
+{
+  "name": "mkstack",
+  "version": "1.0.0",
+  "description": "manage npm stacks",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "bin": {
+    "mkstack": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ralphtheninja/mkstack"
+  },
+  "keywords": [
+    "manage",
+    "stacks",
+    "devops"
+  ],
+  "author": "Lars-Magnus Skog <ralphtheninja@riseup.net>",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/ralphtheninja/mkstack/issues"
+  },
+  "homepage": "https://github.com/ralphtheninja/mkstack",
+  "devDependencies": {
+    "tape": "^3.4.0"
+  },
+  "dependencies": {
+    "async": "^0.9.0",
+    "bail-out": "^1.0.0",
+    "chalk": "^0.5.1",
+    "defined": "0.0.0",
+    "home-dir": "^1.0.0",
+    "rc": "^0.5.5",
+    "xtend": "^4.0.0"
+  }
+}
