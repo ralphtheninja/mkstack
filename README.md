@@ -1,5 +1,7 @@
 # mkstack
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ralphtheninja/mkstack.svg)](https://greenkeeper.io/)
+
 Create and apply your favorite npm stacks.
 
 ## Install
