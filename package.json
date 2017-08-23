@@ -1,6 +1,6 @@
 {
   "name": "mkstack",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "manage npm stacks",
   "main": "index.js",
   "scripts": {
