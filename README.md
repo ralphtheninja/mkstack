@@ -1,6 +1,9 @@
 # mkstack
 
-Create and apply your favorite npm stacks.
+> Create and apply your favorite npm stacks.
+
+[![Build Status](https://travis-ci.org/ralphtheninja/mkstack.svg?branch=master)](https://travis-ci.org/ralphtheninja/mkstack)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
