@@ -6,6 +6,7 @@ var stack = require('./lib/stack')(rc)
 
 var createId = validate(rc.create || rc.c)
 var applyIds = validate(rc.apply || rc.a)
+var useYarn = rc.yarn || rc.y
 var rmId = validate(rc.rm)
 var list = rc.list || rc.l
 
@@ -16,7 +17,7 @@ if (createId) {
   })
 } else if (applyIds) {
   console.log(c.yellow('applying', applyIds))
-  stack.apply(applyIds, end)
+  stack.apply(applyIds, useYarn ? 'yarn' : 'npm', end)
 } else if (rmId) {
   stack.remove(rmId, function (err) {
     if (!err) console.log(c.green('removed', rmId))
