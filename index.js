@@ -1,17 +1,17 @@
 #!/usr/bin/env node
 
-var c = require('chalk')
-var rc = require('./lib/rc')
-var stack = require('./lib/stack')(rc)
+const c = require('chalk')
+const rc = require('./lib/rc')
+const stack = require('./lib/stack')(rc)
 
-var createId = validate(rc.create || rc.c)
-var applyIds = validate(rc.apply || rc.a)
-var useYarn = rc.yarn || rc.y
-var rmId = validate(rc.rm)
-var list = rc.list || rc.l
+const createId = validate(rc.create || rc.c)
+const applyIds = validate(rc.apply || rc.a)
+const useYarn = rc.yarn || rc.y
+const rmId = validate(rc.rm)
+const list = rc.list || rc.l
 
 if (createId) {
-  stack.create(createId, function (err) {
+  stack.create(createId, err => {
     if (!err) console.log(c.green('created', createId))
     end(err)
   })
@@ -19,7 +19,7 @@ if (createId) {
   console.log(c.yellow('applying', applyIds))
   stack.apply(applyIds, useYarn ? 'yarn' : 'npm', end)
 } else if (rmId) {
-  stack.remove(rmId, function (err) {
+  stack.remove(rmId, err => {
     if (!err) console.log(c.green('removed', rmId))
     end(err)
   })
