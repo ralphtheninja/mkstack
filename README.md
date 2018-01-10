@@ -4,7 +4,6 @@
 
 [![Build Status](https://travis-ci.org/ralphtheninja/mkstack.svg?branch=master)](https://travis-ci.org/ralphtheninja/mkstack)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-[![Greenkeeper badge](https://badges.greenkeeper.io/ralphtheninja/mkstack.svg)](https://greenkeeper.io/)
 
 ## Install
 
