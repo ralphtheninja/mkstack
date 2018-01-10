@@ -24,7 +24,11 @@ if (createId) {
     end(err)
   })
 } else if (list) {
-  stack.list(end)
+  if (Object.keys(rc.stacks).length > 0) {
+    console.log(JSON.stringify(rc.stacks, null, 2))
+  } else {
+    end(null, 'No stacks found')
+  }
 } else {
   console.log('usage: mkstack [' + c.yellow('options') + ']')
   console.log(c.yellow('  -c, --create  :id') + '  create a new stack')
