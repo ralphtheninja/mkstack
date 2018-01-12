@@ -1,3 +1,5 @@
+'use strict'
+
 const test = require('tape')
 const rimraf = require('rimraf')
 const path = require('path')
