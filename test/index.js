@@ -2,6 +2,9 @@ const test = require('tape')
 const rimraf = require('rimraf')
 const path = require('path')
 const fs = require('fs')
+const xtend = require('xtend')
+const cp = require('child_process')
+const EventEmitter = require('events').EventEmitter
 const Stack = require('../lib/stack')
 
 test('stack.create', t => {
@@ -55,9 +58,67 @@ test('stack.create', t => {
   })
 })
 
+test('stack.apply', t => {
+  t.test('ids non array throws', t => {
+    const stack = Stack(rc())
+    t.throws(stack.apply.bind(null), /ids must be an array/)
+    t.end()
+  })
+  t.test('ids non array throws', t => {
+    const stack = Stack(rc())
+    t.throws(stack.apply.bind(null, []), /no stack\(s\) provided/)
+    t.end()
+  })
+  t.test('missing stack errors', t => {
+    const stack = Stack(rc())
+    stack.apply([ 'NOWAYDUDE' ], 'npm', err => {
+      t.equal(err.message, 'No such stack NOWAYDUDE')
+      t.end()
+    })
+  })
+  t.test('applies dependencies and devDependencies', t => {
+    const stack = Stack(xtend(rc(), {
+      stacks: {
+        WEB: {
+          dependencies: {
+            express: '^4.16.2'
+          }
+        },
+        TEST: {
+          devDependencies: {
+            tape: '^4.8.0'
+          }
+        }
+      }
+    }))
+    const expected = [
+      [ 'install', 'express@^4.16.2', '--save' ],
+      [ 'install', 'tape@^4.8.0', '--save-dev' ]
+    ]
+    let allArgs = []
+    const spawn = cp.spawn
+    cp.spawn = (cmd, args) => {
+      t.equal(cmd, 'npm', 'npm is default packager')
+      allArgs.push(args)
+      const ee = new EventEmitter()
+      process.nextTick(() => {
+        ee.emit('close')
+      })
+      return ee
+    }
+    stack.apply([ 'WEB', 'TEST' ], 'npm', err => {
+      t.error(err, 'no error')
+      t.same(allArgs, expected, 'correct npm args')
+      cp.spawn = spawn
+      t.end()
+    })
+  })
+})
+
 function rc () {
   return {
-    config: rcFile()
+    config: rcFile(),
+    stacks: {}
   }
 }
 
