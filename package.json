@@ -30,7 +30,6 @@
   },
   "dependencies": {
     "async": "^2.5.0",
-    "bail-out": "^1.0.0",
     "chalk": "^2.1.0",
     "defined": "1.0.0",
     "home-dir": "^1.0.0",
