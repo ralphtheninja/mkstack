@@ -78,7 +78,7 @@ test('stack.apply', t => {
       t.end()
     })
   })
-  t.test('applies dependencies and devDependencies', t => {
+  t.test('applies dependencies and devDependencies - npm', t => {
     const stack = Stack(xtend(rc(), {
       stacks: {
         WEB: {
@@ -100,7 +100,7 @@ test('stack.apply', t => {
     let allArgs = []
     const spawn = cp.spawn
     cp.spawn = (cmd, args) => {
-      t.equal(cmd, 'npm', 'npm is default packager')
+      t.equal(cmd, 'npm', 'npm packager')
       allArgs.push(args)
       const ee = new EventEmitter()
       process.nextTick(() => {
@@ -111,6 +111,43 @@ test('stack.apply', t => {
     stack.apply([ 'WEB', 'TEST' ], 'npm', err => {
       t.error(err, 'no error')
       t.same(allArgs, expected, 'correct npm args')
+      cp.spawn = spawn
+      t.end()
+    })
+  })
+  t.test('applies dependencies and devDependencies - yarn', t => {
+    const stack = Stack(xtend(rc(), {
+      stacks: {
+        WEB: {
+          dependencies: {
+            express: '^4.16.2'
+          }
+        },
+        TEST: {
+          devDependencies: {
+            tape: '^4.8.0'
+          }
+        }
+      }
+    }))
+    const expected = [
+      [ 'add', 'express@^4.16.2' ],
+      [ 'add', 'tape@^4.8.0', '--dev' ]
+    ]
+    let allArgs = []
+    const spawn = cp.spawn
+    cp.spawn = (cmd, args) => {
+      t.equal(cmd, 'yarn', 'yarn packager')
+      allArgs.push(args)
+      const ee = new EventEmitter()
+      process.nextTick(() => {
+        ee.emit('close')
+      })
+      return ee
+    }
+    stack.apply([ 'WEB', 'TEST' ], 'yarn', err => {
+      t.error(err, 'no error')
+      t.same(allArgs, expected, 'correct yarn args')
       cp.spawn = spawn
       t.end()
     })
