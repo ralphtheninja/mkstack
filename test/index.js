@@ -115,6 +115,47 @@ test('stack.apply', t => {
   })
 })
 
+test('stack.remove', t => {
+  t.test('errors if missing stack', t => {
+    const stack = Stack(rc())
+    stack.remove('nonononono', err => {
+      t.equal(err.message, 'No stack named nonononono')
+      t.end()
+    })
+  })
+  t.test('saves modified stack', t => {
+    const stack = Stack(xtend(rc(), {
+      stacks: {
+        WEB: {
+          dependencies: {
+            express: '^4.16.2'
+          }
+        },
+        TEST: {
+          devDependencies: {
+            tape: '^4.8.0'
+          }
+        }
+      }
+    }))
+    rimraf.sync(rcFile())
+    stack.remove('TEST', err => {
+      t.error(err, 'no error')
+      const saved = JSON.parse(fs.readFileSync(rcFile()))
+      t.same(saved, {
+        stacks: {
+          WEB: {
+            dependencies: {
+              express: '^4.16.2'
+            }
+          }
+        }
+      })
+      t.end()
+    })
+  })
+})
+
 function rc () {
   return {
     config: rcFile(),
