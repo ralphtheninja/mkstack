@@ -45,7 +45,6 @@ test('stack.create', t => {
     stack.create('WOOHOO', err => {
       process.cwd = cwd
       const saved = JSON.parse(fs.readFileSync(rcFile()))
-      console.log(JSON.stringify(saved, null, 2))
       t.ok(saved.stacks, '.stacks ok')
       t.ok(saved.stacks.WOOHOO, '.stacks.WOOHOO ok')
       t.ok(saved.stacks.WOOHOO.dependencies, '.stacks.WOOHOO.dependencies ok')
