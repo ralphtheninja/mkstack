@@ -21,8 +21,7 @@ $ npm install mkstack -g
 Lets setup a web stack. We need `browserify` and some other stuff.
 
 ```
-$ mkdir ~/src/new-web-project && cd ~/src/new-web-project
-$ npm init
+$ mkdir ~/new-web-project && cd ~/new-web-project && npm init --yes
 $ npm i browserify --save
 $ npm i shoe --save --save-exact
 $ npm i send --save --save-exact
@@ -35,7 +34,7 @@ Save it.
 
 ```
 $ mkstack -c web
-created web
+Created web
 ```
 
 #### Apply stack(s)
@@ -50,9 +49,9 @@ Time for a new web project. Create a new folder and apply the previously saved s
 *Use -y or --yarn if you want to use yarn instead of npm*
 
 ```
-$ mkdir ~/src/next-project && cd ~/src/next-project
+$ mkdir ~/next-project && cd ~/next-project && npm init --yes
 $ mkstack -a web
-applying web
+Applying web
 ..
 ```
 
@@ -72,7 +71,7 @@ Or use a comma separated list. This is more optimal since the dependency configu
 
 ```
 $ mkstack -a web,sockets,tcp-server,irc2,console
-applying web,sockets,tcp-server,irc2,console
+Applying web,sockets,tcp-server,irc2,console
 ..
 ```
 
@@ -106,9 +105,9 @@ $ mkstack -l
 
 ```
 $ mkstack --rm web
-removed web
+Removed web
 $ mkstack -l
-no stacks found
+No stacks found
 ```
 
 ## Config
