@@ -43,6 +43,7 @@ test('stack.create', t => {
     }
     rimraf.sync(rcFile())
     stack.create('WOOHOO', err => {
+      t.error(err, 'no error')
       process.cwd = cwd
       const saved = JSON.parse(fs.readFileSync(rcFile()))
       t.ok(saved.stacks, '.stacks ok')
