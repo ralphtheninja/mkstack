@@ -17,7 +17,7 @@ if (createId) {
   })
 } else if (applyIds) {
   console.log(c.yellow('applying', applyIds))
-  stack.apply(applyIds, useYarn ? 'yarn' : 'npm', end)
+  stack.apply(applyIds.split(','), useYarn ? 'yarn' : 'npm', end)
 } else if (rmId) {
   stack.remove(rmId, err => {
     if (!err) console.log(c.green('removed', rmId))
