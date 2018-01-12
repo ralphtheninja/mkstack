@@ -12,15 +12,15 @@ const list = rc.list || rc.l
 
 if (createId) {
   stack.create(createId, err => {
-    if (!err) console.log(c.green('created', createId))
+    if (!err) console.log(c.green('Created', createId))
     end(err)
   })
 } else if (applyIds) {
-  console.log(c.yellow('applying', applyIds))
+  console.log(c.yellow('Applying', applyIds))
   stack.apply(applyIds.split(','), useYarn ? 'yarn' : 'npm', end)
 } else if (rmId) {
   stack.remove(rmId, err => {
-    if (!err) console.log(c.green('removed', rmId))
+    if (!err) console.log(c.green('Removed', rmId))
     end(err)
   })
 } else if (list) {
