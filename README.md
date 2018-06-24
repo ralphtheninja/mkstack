@@ -119,4 +119,5 @@ $ mkstack -c websockets --config ~/path/to/my/stacks
 ```
 
 ## License
-All code, unless stated otherwise, is licensed under the [`WTFPL`](http://www.wtfpl.net/txt/copying/).
+
+[GPL-3.0](LICENSE) © 2018-present Lars-Magnus Skog.
