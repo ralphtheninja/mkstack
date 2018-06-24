@@ -2,6 +2,7 @@
 
 > Create and apply your favorite npm stacks.
 
+[![npm](https://img.shields.io/npm/v/mkstack.svg)](https://www.npmjs.com/package/mkstack)
 ![Node version](https://img.shields.io/node/v/mkstack.svg)
 [![Build Status](https://travis-ci.org/ralphtheninja/mkstack.svg?branch=master)](https://travis-ci.org/ralphtheninja/mkstack)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
